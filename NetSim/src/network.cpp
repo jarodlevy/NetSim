@@ -51,13 +51,13 @@ bool Network::add_link(const size_t& a, const size_t& b) {
   @param mean_deg the average of the Poisson distribution.
  */
  
-size_t Network::random_connect(const double& random) {
+size_t Network::random_connect(const double& mean_deg) {
 
 	links.clear(); // We clear the map before fill it with other values
 	
 	for(size_t i(0); i < values.size(); ++i) {
 
-        size_t deg(RNG.poisson(random));
+        size_t deg(RNG.poisson(mean_deg));
 
 		for(size_t j(0); j < deg; ++j) {
             while(!add_link(i,RNG.uniform_double(0, values.size()))) continue; // This command was hard to find, while we can't add a link we change values until it works
